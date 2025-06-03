@@ -58,10 +58,10 @@ pipeline {
         always {
             script {
                 if (fileExists('/var/jenkins_home/.fortify/scancentral-24.4.1/log/launcher.log')) {
-                    archiveArtifacts artifacts: "/var/jenkins_home/.fortify/scancentral-24.4.1/log/launcher.log", fingerprint: true
+                    sh 'cat /var/jenkins_home/.fortify/scancentral-24.4.1/log/launcher.log'
                 }
                 if (fileExists('/var/jenkins_home/.fortify/scancentral-24.4.1/log/scancentral.log')) {
-                    archiveArtifacts artifacts: "/var/jenkins_home/.fortify/scancentral-24.4.1/log/scancentral.log", fingerprint: true
+                    sh 'cat /var/jenkins_home/.fortify/scancentral-24.4.1/log/scancentral.log'
                 }
 
                 sh 'rm /var/jenkins_home/.fortify/scancentral-24.4.1/log/*.log'
