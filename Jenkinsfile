@@ -13,6 +13,15 @@ pipeline {
         //         sh 'ls /tmp/scancentral/'
         //     }
         // }
+        stage('Environment Variables') {
+            steps {
+                sh 'echo $PATH'
+                sh 'echo $M2'
+                sh 'echo $M2_HOME'
+                sh 'echo $MAVEN_HOME'
+                sh 'echo $JAVA_HOME'
+            }
+        }
         stage('Scan with Fortify On Demand') {
             steps {
                 fodStaticAssessment applicationName: 'SCM_Benchmark',
