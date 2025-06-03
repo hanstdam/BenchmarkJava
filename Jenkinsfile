@@ -24,6 +24,7 @@ pipeline {
                     microserviceName: '',
                     openSourceScan: 'false',
                     overrideGlobalConfig: false,
+                    owner: 112645,
                     personalAccessToken: '',
                     releaseId: '',
                     releaseName: 'Jenkins',
