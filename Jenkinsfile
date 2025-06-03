@@ -9,7 +9,7 @@ pipeline {
             steps {
                 sh 'curl -L -o scancentral.zip http://192.168.1.123:3000/Fortify_ScanCentral_Client_Latest_x64.zip'
                 sh 'mkdir -p /tmp/scancentral/'
-                sh 'unzip scancentral.zip /tmp/scancentral/'
+                sh 'unzip scancentral.zip -d /tmp/scancentral/'
                 sh 'ls /tmp/scancentral/'
             }
         }
