@@ -6,9 +6,11 @@ pipeline {
     }
     stages {
         stage('Get ScanCentral') {
-            sh 'curl -L -o scancentral.zip http://192.168.1.123:3000/Fortify_ScanCentral_Client_Latest_x64.zip'
-            sh 'unzip scancentral.zip /tmp/scancentral'
-            sh 'ls /tmp/scancentral'
+            steps {
+                sh 'curl -L -o scancentral.zip http://192.168.1.123:3000/Fortify_ScanCentral_Client_Latest_x64.zip'
+                sh 'unzip scancentral.zip /tmp/scancentral'
+                sh 'ls /tmp/scancentral'
+            }
         }
         stage('Scan with Fortify On Demand') {
             steps {
