@@ -48,7 +48,7 @@ pipeline {
                     // scanCentralVirtualEnv: '',
                     sdlcStatus: '3',
                     srcLocation: '',
-                    technologyStack: '7',
+                    technologyStack: '7'
                     // tenantId: '',
                     // username: ''
             }
