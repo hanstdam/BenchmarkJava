@@ -4,9 +4,6 @@ pipeline {
         jdk "jdk-17.0.12"
         maven "maven-3.9.9"
     }
-    environment {
-        PATH = "/var/jenkins_home/tools/hudson.tasks.Maven_MavenInstallation/maven-3.9.9/bin:${env.PATH}"
-    }
     stages {
         // stage('Get ScanCentral') {
         //     steps {
