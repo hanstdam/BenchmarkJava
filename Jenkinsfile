@@ -13,11 +13,6 @@ pipeline {
         //         sh 'ls /tmp/scancentral/'
         //     }
         // }
-        stage('Get ScanCentral') {
-            steps {
-                sh 'echo $PATH'
-            }
-        }
         stage('Scan with Fortify On Demand') {
             steps {
                 fodStaticAssessment applicationName: 'SCM_Benchmark',
@@ -56,6 +51,20 @@ pipeline {
                     technologyStack: '7',
                     tenantId: '',
                     username: ''
+            }
+        }
+    }
+    post {
+        always {
+            script {
+                if (fileExists('/var/jenkins_home/.fortify/scancentral-24.4.1/log/launcher.log')) {
+                    archiveArtifacts artifacts: "/var/jenkins_home/.fortify/scancentral-24.4.1/log/launcher.log", fingerprint: true
+                }
+                if (fileExists('/var/jenkins_home/.fortify/scancentral-24.4.1/log/scancentral.log')) {
+                    archiveArtifacts artifacts: "/var/jenkins_home/.fortify/scancentral-24.4.1/log/scancentral.log", fingerprint: true
+                }
+
+                sh 'rm /var/jenkins_home/.fortify/scancentral-24.4.1/log/*.log'
             }
         }
     }
