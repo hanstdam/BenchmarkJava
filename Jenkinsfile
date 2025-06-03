@@ -5,9 +5,43 @@ pipeline {
         maven "maven-3.9.9"
     }
     stages {
-        stage('Build') {
+        stage('Scan with Fortify On Demand') {
             steps {
-                sh 'mvn clean install'
+                fodStaticAssessment applicationName: 'SCM_Benchmark',
+                    applicationType: '1',
+                    assessmentType: '-1',
+                    attributes: '',
+                    auditPreference: '2',
+                    bsiToken: '',
+                    businessCriticality: '1',
+                    entitlementId: '',
+                    entitlementPreference: '',
+                    frequencyId: '',
+                    inProgressBuildResultType: 'FailBuild',
+                    inProgressScanActionType: 'Queue',
+                    isMicroservice: false,
+                    languageLevel: '34',
+                    microserviceName: '',
+                    openSourceScan: 'false',
+                    overrideGlobalConfig: false,
+                    personalAccessToken: '',
+                    releaseId: '',
+                    releaseName: 'Jenkins',
+                    remediationScanPreferenceType: 'RemediationScanIfAvailable',
+                    scanCentral: 'Maven',
+                    scanCentralBuildCommand: '',
+                    scanCentralBuildFile: 'pom.xml',
+                    scanCentralBuildToolVersion: '',
+                    scanCentralExcludeFiles: '',
+                    scanCentralIncludeTests: '',
+                    scanCentralRequirementFile: '',
+                    scanCentralSkipBuild: '',
+                    scanCentralVirtualEnv: '',
+                    sdlcStatus: '3',
+                    srcLocation: '',
+                    technologyStack: '7',
+                    tenantId: '',
+                    username: ''
             }
         }
     }
