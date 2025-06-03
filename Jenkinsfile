@@ -18,7 +18,7 @@ pipeline {
         // }
         stage('Get ScanCentral') {
             steps {
-                sh 'which mvn'
+                sh 'echo $PATH'
             }
         }
         stage('Scan with Fortify On Demand') {
