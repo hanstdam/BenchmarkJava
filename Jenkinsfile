@@ -13,6 +13,11 @@ pipeline {
         //         sh 'ls /tmp/scancentral/'
         //     }
         // }
+        stage('Get ScanCentral') {
+            steps {
+                sh 'which mvn'
+            }
+        }
         stage('Scan with Fortify On Demand') {
             steps {
                 fodStaticAssessment applicationName: 'SCM_Benchmark',
