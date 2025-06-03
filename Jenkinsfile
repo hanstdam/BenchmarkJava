@@ -5,14 +5,9 @@ pipeline {
         maven "maven-3.9.9"
     }
     stages {
-        stage('Verify Java') {
+        stage('Build') {
             steps {
-                sh 'java -version'
-            }
-        }
-        stage('Verify Maven') {
-            steps {
-                sh 'mvn -version'
+                sh 'mvn clean install'
             }
         }
     }
