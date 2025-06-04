@@ -40,6 +40,7 @@ pipeline {
         }
         stage('Scan with Fortify On Demand') {
             steps {
+                sh 'mvn -v'
                 fodStaticAssessment applicationName: 'SCM_Benchmark',
                     applicationType: '1',
                     assessmentType: '-1',
