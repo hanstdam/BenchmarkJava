@@ -69,7 +69,7 @@ pipeline {
                     overrideGlobalConfig: false,
                     owner: 112645,
                     // personalAccessToken: '',
-                    // releaseId: '',
+                    releaseId: '1495949',
                     releaseName: 'Jenkins',
                     remediationScanPreferenceType: 'NonRemediationScanOnly',
                     scanCentral: 'Maven',
@@ -86,6 +86,12 @@ pipeline {
                     technologyStack: '7'
                     // tenantId: '',
                     // username: ''
+            }
+        }
+        stage('Get Results From Fortify On Demand') {
+            steps {
+                fodPollResults pollingInterval: 2,
+                    releaseId: '1495949'
             }
         }
     }
