@@ -6,6 +6,7 @@ pipeline {
     }
     environment {
         FOD_TRACE = 'true'
+        PATH = "$HOME/fortify/tools/bin:$PATH"
     }
     stages {
         // stage('Get ScanCentral') {
@@ -36,14 +37,15 @@ pipeline {
                     curl -L https://github.com/fortify/fcli/releases/download/latest/fcli-linux.tgz | tar -xz fcli
                     ./fcli --version
                     ./fcli tool sc-client install
-                    export PATH="$PATH:$HOME/fortify/tools/bin"
                     scancentral --version
                 """
             }
         }
         stage('ScanCentral package') {
             steps {
-                sh 'scancentral package -bt mvn -bf pom.xml -o Package.zip'
+                sh """
+                    scancentral package -bt mvn -bf pom.xml -o Package.zip
+                """
             }
         }
         stage('Scan with Fortify On Demand') {
