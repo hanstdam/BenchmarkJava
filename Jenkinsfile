@@ -41,13 +41,13 @@ pipeline {
                 """
             }
         }
-        stage('ScanCentral package') {
-            steps {
-                sh """
-                    scancentral package -bt mvn -bf pom.xml -o Package.zip
-                """
-            }
-        }
+        // stage('ScanCentral package') {
+        //     steps {
+        //         sh """
+        //             scancentral package -bt mvn -bf pom.xml -o Package.zip
+        //         """
+        //     }
+        // }
         stage('Scan with Fortify On Demand') {
             steps {
                 fodStaticAssessment applicationName: 'SCM_Benchmark',
@@ -79,10 +79,10 @@ pipeline {
                     // scanCentralExcludeFiles: '',
                     // scanCentralIncludeTests: '',
                     // scanCentralRequirementFile: '',
-                    scanCentralSkipBuild: 'true',
+                    // scanCentralSkipBuild: 'true',
                     // scanCentralVirtualEnv: '',
                     sdlcStatus: '3',
-                    srcLocation: 'Package.zip',
+                    // srcLocation: 'Package.zip',
                     technologyStack: '7'
                     // tenantId: '',
                     // username: ''
