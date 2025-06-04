@@ -69,7 +69,7 @@ pipeline {
                     overrideGlobalConfig: false,
                     owner: 112645,
                     // personalAccessToken: '',
-                    releaseId: '1495949',
+                    releaseId: '1495981',
                     releaseName: 'Jenkins',
                     remediationScanPreferenceType: 'NonRemediationScanOnly',
                     scanCentral: 'Maven',
@@ -92,7 +92,7 @@ pipeline {
             steps {
                 fodPollResults bsiToken: '',
                     pollingInterval: 2,
-                    releaseId: '1495949'
+                    releaseId: '1495981'
             }
         }
     }
