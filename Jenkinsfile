@@ -64,7 +64,7 @@ pipeline {
                     releaseName: 'Jenkins',
                     remediationScanPreferenceType: 'RemediationScanIfAvailable',
                     scanCentral: 'Maven',
-                    // scanCentralBuildCommand: '',
+                    scanCentralBuildCommand: '-debug',
                     // scanCentralBuildFile: '',
                     // scanCentralBuildToolVersion: '',
                     // scanCentralExcludeFiles: '',
@@ -73,7 +73,7 @@ pipeline {
                     // scanCentralSkipBuild: '',
                     // scanCentralVirtualEnv: '',
                     sdlcStatus: '3',
-                    srcLocation: '',
+                    //srcLocation: '',
                     technologyStack: '7'
                     // tenantId: '',
                     // username: ''
