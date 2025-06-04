@@ -5,25 +5,37 @@ pipeline {
         maven "maven-3.9.9"
     }
     stages {
-        stage('Get ScanCentral') {
+        // stage('Get ScanCentral') {
+        //     steps {
+        //         script {
+        //             if (!fileExists('/tmp/scancentral/bin/scancentral')) {
+        //                 sh 'curl -L -o scancentral.zip http://192.168.1.123:3000/Fortify_ScanCentral_Client_Latest_x64.zip'
+        //                 sh 'mkdir -p /tmp/scancentral/'
+        //                 sh 'unzip scancentral.zip -d /tmp/scancentral/'
+        //                 sh 'ls /tmp/scancentral/'
+        //                 sh 'chmod +x /tmp/scancentral/bin/scancentral'
+        //             }
+        //         }
+        //     }
+        // }
+        // stage('Environment Variables') {
+        //     steps {
+        //         sh 'echo $PATH'
+        //         sh 'echo $M2'
+        //         sh 'echo $M2_HOME'
+        //         sh 'echo $MAVEN_HOME'
+        //         sh 'echo $JAVA_HOME'
+        //     }
+        // }
+        stage('Install fcli and scancentral') {
             steps {
-                script {
-                    if (!fileExists('/tmp/scancentral/bin/scancentral')) {
-                        sh 'curl -L -o scancentral.zip http://192.168.1.123:3000/Fortify_ScanCentral_Client_Latest_x64.zip'
-                        sh 'mkdir -p /tmp/scancentral/'
-                        sh 'unzip scancentral.zip -d /tmp/scancentral/'
-                        sh 'ls /tmp/scancentral/'
-                    }
-                }
-            }
-        }
-        stage('Environment Variables') {
-            steps {
-                sh 'echo $PATH'
-                sh 'echo $M2'
-                sh 'echo $M2_HOME'
-                sh 'echo $MAVEN_HOME'
-                sh 'echo $JAVA_HOME'
+                sh """
+                    curl -L https://github.com/fortify/fcli/releases/download/latest/fcli-linux.tgz | tar -xz fcli
+                    ./fcli --version
+                    ./fcli tool sc-client install
+                    export PATH="$PATH:$HOME/fortify/tools/bin"
+                    scancentral --version
+                """
             }
         }
         stage('Scan with Fortify On Demand') {
