@@ -90,7 +90,8 @@ pipeline {
         }
         stage('Get Results From Fortify On Demand') {
             steps {
-                fodPollResults pollingInterval: 2,
+                fodPollResults bsiToken: '',
+                    pollingInterval: 2,
                     releaseId: '1495949'
             }
         }
