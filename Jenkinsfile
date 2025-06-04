@@ -4,6 +4,9 @@ pipeline {
         jdk "jdk-17.0.12"
         maven "maven-3.9.9"
     }
+    environment {
+        FOD_TRACE = 'true'
+    }
     stages {
         // stage('Get ScanCentral') {
         //     steps {
@@ -38,19 +41,23 @@ pipeline {
                 """
             }
         }
+        stage('ScanCentral package') {
+            steps {
+                sh 'scancentral package -bt mvn -bf pom.xml -o Package.zip'
+            }
+        }
         stage('Scan with Fortify On Demand') {
             steps {
-                sh 'mvn -v'
                 fodStaticAssessment applicationName: 'SCM_Benchmark',
                     applicationType: '1',
-                    assessmentType: '-1',
+                    assessmentType: '274',
                     // attributes: '',
                     auditPreference: '2',
                     // bsiToken: '',
                     businessCriticality: '1',
-                    // entitlementId: '',
+                    entitlementId: '13916',
                     // entitlementPreference: '',
-                    // frequencyId: '',
+                    frequencyId: '2',
                     inProgressBuildResultType: 'FailBuild',
                     inProgressScanActionType: 'Queue',
                     isMicroservice: false,
@@ -62,18 +69,18 @@ pipeline {
                     // personalAccessToken: '',
                     // releaseId: '',
                     releaseName: 'Jenkins',
-                    remediationScanPreferenceType: 'RemediationScanIfAvailable',
+                    remediationScanPreferenceType: 'NonRemediationScanOnly',
                     scanCentral: 'Maven',
-                    scanCentralBuildCommand: '-debug',
+                    // scanCentralBuildCommand: '-debug',
                     // scanCentralBuildFile: '',
                     // scanCentralBuildToolVersion: '',
                     // scanCentralExcludeFiles: '',
                     // scanCentralIncludeTests: '',
                     // scanCentralRequirementFile: '',
-                    // scanCentralSkipBuild: '',
+                    scanCentralSkipBuild: 'true',
                     // scanCentralVirtualEnv: '',
                     sdlcStatus: '3',
-                    //srcLocation: '',
+                    srcLocation: 'Package.zip',
                     technologyStack: '7'
                     // tenantId: '',
                     // username: ''
