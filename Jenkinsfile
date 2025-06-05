@@ -117,12 +117,12 @@ pipeline {
     post {
         always {
             script {
-                if (fileExists("$HOME/.fortify/scancentral-24.4.1/log/launcher.log")) {
-                    sh "cat $HOME/.fortify/scancentral-24.4.1/log/launcher.log"
-                }
-                if (fileExists("$HOME/.fortify/scancentral-24.4.1/log/scancentral.log")) {
-                    sh "cat $HOME/.fortify/scancentral-24.4.1/log/scancentral.log"
-                }
+                // if (fileExists("$HOME/.fortify/scancentral-24.4.1/log/launcher.log")) {
+                //     sh "cat $HOME/.fortify/scancentral-24.4.1/log/launcher.log"
+                // }
+                // if (fileExists("$HOME/.fortify/scancentral-24.4.1/log/scancentral.log")) {
+                //     sh "cat $HOME/.fortify/scancentral-24.4.1/log/scancentral.log"
+                // }
 
                 sh "rm $HOME/.fortify/scancentral-24.4.1/log/*.log"
             }
