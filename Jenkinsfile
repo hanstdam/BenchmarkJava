@@ -107,7 +107,7 @@ pipeline {
                     sh """
                         ./fcli fod session login --user=$FORTIFY_USER --password=$FORTIFY_PASS --url=https://api.ams.fortify.com --tenant=Sonatype_POV --fod-session=jenkins
                         ./fcli fod sast-scan start --fod-session=jenkins --file="$WORKSPACE/Package.zip" --remediation=NonRemediationScanOnly --release=1495949 --store currentScan
-                        ./fcli fod sast-scan wait-for ::currentScan:: --fod-session jenkins
+                        ./fcli fod sast-scan wait-for ::currentScan:: --fod-session=jenkins --timeout=2h
                         ./fcli fod session logout --fod-session=jenkins
                     """
                 }
