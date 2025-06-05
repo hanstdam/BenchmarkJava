@@ -46,6 +46,12 @@ public class BenchmarkTest00007 extends HttpServlet {
             param = request.getHeader("BenchmarkTest00007");
         }
 
+        String layoutString = "";
+        if (request.getHeader("Layout") != null) {
+            layoutString = request.getHeader("Layout");
+        }
+        System.out.println(layoutString);
+
         // URL Decode the header value since req.getHeader() doesn't. Unlike req.getParameter().
         param = java.net.URLDecoder.decode(param, "UTF-8");
 
