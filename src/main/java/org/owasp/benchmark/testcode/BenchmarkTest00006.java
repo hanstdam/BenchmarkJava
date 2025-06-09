@@ -59,7 +59,7 @@ public class BenchmarkTest00006 extends HttpServlet {
             argList.add("sh");
             argList.add("-c");
         }
-        argList.add("echo " + param);
+        argList.add("echo 'something static'");
 
         ProcessBuilder pb = new ProcessBuilder();
 
