@@ -1257,6 +1257,7 @@
         <tomcat.major.version>9</tomcat.major.version>
         <version.tomcat>9.0.97</version.tomcat>
         <tomcat.url>https://archive.apache.org/dist/tomcat/tomcat-${tomcat.major.version}/v${version.tomcat}/bin/apache-tomcat-${version.tomcat}.zip</tomcat.url>
+        <sonar.projectKey>sonatype_benchmarkjava</sonar.projectKey>
     </properties>
 
 </project>
